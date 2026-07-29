@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Donor List — Cleveland County 4-H Foundation</title>
+<link rel="icon" type="image/png" href="/assets/favicon.png">
+<style>
+  :root { --green:#00843D; --green-deep:#04672F; --ink:#16241B; --muted:#56655A; --line:#E4E9DE; --ground:#F5F7F1; --surface:#fff; --soft:#E8F2EA; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--ground); color:var(--ink); font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; line-height:1.5; }
+  .wrap { max-width:1000px; margin:0 auto; padding:32px 20px 60px; }
+  h1 { font-family:Georgia,serif; font-size:1.6rem; margin:0 0 4px; }
+  .sub { color:var(--muted); margin:0 0 24px; font-size:.95rem; }
+  .bar { display:flex; gap:10px; flex-wrap:wrap; align-items:center; background:var(--surface); border:1px solid var(--line); border-radius:12px; padding:14px 16px; margin-bottom:20px; }
+  input[type=password] { font:inherit; padding:10px 12px; border:1.5px solid var(--line); border-radius:9px; flex:1; min-width:200px; }
+  input:focus { outline:none; border-color:var(--green); }
+  button { font:inherit; font-weight:600; padding:10px 18px; border-radius:9px; border:1.5px solid transparent; cursor:pointer; }
+  .primary { background:var(--green); color:#fff; }
+  .primary:hover { background:var(--green-deep); }
+  .ghost { background:var(--surface); border-color:var(--line); color:var(--ink); }
+  .ghost:hover { border-color:var(--green); color:var(--green); }
+  .stats { display:flex; gap:12px; flex-wrap:wrap; margin-bottom:18px; }
+  .stat { background:var(--surface); border:1px solid var(--line); border-radius:11px; padding:12px 18px; }
+  .stat b { font-family:Georgia,serif; font-size:1.5rem; color:var(--green); display:block; line-height:1; }
+  .stat span { font-size:.72rem; text-transform:uppercase; letter-spacing:.05em; color:var(--muted); }
+  .scroll { overflow-x:auto; border:1px solid var(--line); border-radius:12px; background:var(--surface); }
+  table { border-collapse:collapse; width:100%; font-size:.85rem; min-width:760px; }
+  th,td { text-align:left; padding:10px 12px; border-bottom:1px solid var(--line); white-space:nowrap; }
+  th { background:#F0F4EC; font-size:.68rem; text-transform:uppercase; letter-spacing:.04em; color:var(--muted); position:sticky; top:0; }
+  tbody tr:last-child td { border-bottom:none; }
+  .pill { background:var(--soft); color:var(--green-deep); font-size:.72rem; padding:2px 8px; border-radius:999px; }
+  .note { font-size:.9rem; color:var(--muted); }
+  .err { color:#A5342A; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>🍀 Donor List</h1>
+  <p class="sub">Cleveland County 4-H Foundation — private organizer view.</p>
+
+  <div class="bar">
+    <input type="password" id="key" placeholder="Enter admin key" autocomplete="off">
+    <button class="primary" id="load">Load list</button>
+    <button class="ghost" id="csv">Download CSV</button>
+    <span class="note" id="status"></span>
+  </div>
+
+  <div class="stats" id="stats" style="display:none">
+    <div class="stat"><b id="sTotal">0</b><span>Total</span></div>
+    <div class="stat"><b id="sMonthly">0</b><span>Monthly pledges</span></div>
+    <div class="stat"><b id="sAlumni">0</b><span>Alumni</span></div>
+  </div>
+
+  <div class="scroll" id="tableWrap" style="display:none">
+    <table>
+      <thead><tr><th>Name</th><th>Email</th><th>Phone</th><th>Connection</th><th>Interested in</th><th>Monthly</th><th>Signed up</th></tr></thead>
+      <tbody id="tbody"></tbody>
+    </table>
+  </div>
+</div>
+
+<script>
+  var $ = function (id) { return document.getElementById(id); };
+  var esc = function (s) { return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) { return ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]; }); };
+
+  function load() {
+    var key = $("key").value.trim();
+    if (!key) { setStatus("Enter your admin key.", true); return; }
+    setStatus("Loading…", false);
+    fetch("/api/export?format=json&key=" + encodeURIComponent(key))
+      .then(function (r) {
+        if (r.status === 401) throw new Error("Wrong key.");
+        if (!r.ok) throw new Error("Couldn't load (" + r.status + ").");
+        return r.json();
+      })
+      .then(function (rows) {
+        render(rows);
+        setStatus(rows.length + " signup" + (rows.length === 1 ? "" : "s") + " loaded.", false);
+      })
+      .catch(function (e) { setStatus(e.message, true); });
+  }
+
+  function render(rows) {
+    $("stats").style.display = "flex";
+    $("tableWrap").style.display = "block";
+    $("sTotal").textContent = rows.length;
+    $("sMonthly").textContent = rows.filter(function (r) { return r.monthly; }).length;
+    $("sAlumni").textContent = rows.filter(function (r) { return r.connection === "Alumni"; }).length;
+    $("tbody").innerHTML = rows.length
+      ? rows.map(function (r) {
+          return "<tr><td>" + esc(r.first) + " " + esc(r.last) + "</td><td>" + esc(r.email) +
+            "</td><td>" + (esc(r.phone) || "—") + "</td><td>" + (r.connection ? '<span class="pill">' + esc(r.connection) + "</span>" : "—") +
+            "</td><td>" + (esc(r.interests) || "—") + "</td><td>" + (r.monthly ? "Yes" + (r.amount ? " ($" + esc(r.amount) + ")" : "") : "—") +
+            "</td><td>" + esc(String(r.created || "").slice(0, 10)) + "</td></tr>";
+        }).join("")
+      : '<tr><td colspan="7" style="text-align:center;padding:24px;color:#889">No signups yet.</td></tr>';
+  }
+
+  function downloadCsv() {
+    var key = $("key").value.trim();
+    if (!key) { setStatus("Enter your admin key first.", true); return; }
+    window.location.href = "/api/export?key=" + encodeURIComponent(key);
+  }
+
+  function setStatus(msg, isErr) { var s = $("status"); s.textContent = msg; s.className = "note" + (isErr ? " err" : ""); }
+
+  $("load").addEventListener("click", load);
+  $("csv").addEventListener("click", downloadCsv);
+  $("key").addEventListener("keydown", function (e) { if (e.key === "Enter") load(); });
+</script>
+</body>
+</html>
