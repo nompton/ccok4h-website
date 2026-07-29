@@ -202,6 +202,7 @@
   .foot-grid { display: flex; justify-content: space-between; gap: 32px; flex-wrap: wrap; align-items: flex-start; }
   .foot-brand { display: flex; align-items: center; gap: 12px; font-family: Georgia, serif; font-size: 1.15rem; }
   .foot-brand .cl { width: 36px; height: auto; }
+  img.cl { display: block; height: auto; object-fit: contain; }
   footer p { margin: 0; font-size: .9rem; opacity: .82; max-width: 40ch; }
   .foot-col h4 { font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; margin: 0 0 12px; opacity: .7; }
   .foot-col a { display: block; color: inherit; text-decoration: none; opacity: .85; font-size: .92rem; margin-bottom: 8px; }
@@ -572,6 +573,22 @@
         submitBtn.textContent = "Add me to the list";
       });
   });
+})();
+
+// Use the official logo file if it's present; otherwise keep the built-in emblem.
+(function () {
+  var probe = new Image();
+  probe.onload = function () {
+    if (!probe.naturalWidth) return;
+    document.querySelectorAll("svg.cl").forEach(function (svg) {
+      var img = document.createElement("img");
+      img.src = "/assets/logo.png";
+      img.alt = "Cleveland County 4-H clover";
+      img.setAttribute("class", svg.getAttribute("class") || "cl");
+      svg.replaceWith(img);
+    });
+  };
+  probe.src = "/assets/logo.png";
 })();
 </script>
 </body>
