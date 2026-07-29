@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="The Cleveland County 4-H Foundation funds the clubs, camps, scholarships, and leaders that shape young people across Cleveland County, Oklahoma. Donate or join our donor list.">
+<link rel="canonical" href="https://ccok4h.org/">
+<link rel="icon" type="image/png" href="/assets/favicon.png">
+<meta name="theme-color" content="#00843D">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Cleveland County 4-H Foundation">
+<meta property="og:title" content="Cleveland County 4-H Foundation">
+<meta property="og:description" content="Growing the next generation across Cleveland County, Oklahoma. Donate or join our donor list.">
+<meta property="og:url" content="https://ccok4h.org/">
+<meta property="og:image" content="https://ccok4h.org/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Cleveland County 4-H Foundation">
+<meta name="twitter:description" content="Growing the next generation across Cleveland County, Oklahoma.">
+<meta name="twitter:image" content="https://ccok4h.org/assets/og-image.png">
+<title>Cleveland County 4-H Foundation</title>
+<style>
+  :root {
+    --ground: #FCFDFB;
+    --ground-2: #F1F5EC;
+    --surface: #FFFFFF;
+    --ink: #16241B;
+    --muted: #56655A;
+    --faint: #859388;
+    --line: #E4E9DE;
+    --green: #00843D;
+    --green-deep: #04672F;
+    --green-ink: #0B3D22;
+    --green-soft: #E8F2EA;
+    --gold: #B0862A;
+    --gold-soft: #F7F0DC;
+    --shadow-sm: 0 1px 2px rgba(16,36,27,.05);
+    --shadow: 0 2px 4px rgba(16,36,27,.04), 0 18px 40px -20px rgba(16,36,27,.22);
+    --shadow-lg: 0 30px 60px -24px rgba(4,103,47,.30);
+    --r: 16px;
+    --maxw: 1080px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --ground: #0D110B; --ground-2: #141A11; --surface: #171E13;
+      --ink: #E9EFE3; --muted: #A0AC9B; --faint: #6F7C69; --line: #29321F;
+      --green: #57BB7E; --green-deep: #74CB95; --green-ink: #BFE6CC; --green-soft: #182617;
+      --gold: #D3B058; --gold-soft: #251F0F;
+      --shadow-sm: 0 1px 2px rgba(0,0,0,.4);
+      --shadow: 0 2px 4px rgba(0,0,0,.3), 0 22px 48px -22px rgba(0,0,0,.7);
+      --shadow-lg: 0 34px 70px -26px rgba(0,0,0,.8);
+    }
+  }
+  :root[data-theme="light"] {
+    --ground: #FCFDFB; --ground-2: #F1F5EC; --surface: #FFFFFF; --ink: #16241B;
+    --muted: #56655A; --faint: #859388; --line: #E4E9DE; --green: #00843D;
+    --green-deep: #04672F; --green-ink: #0B3D22; --green-soft: #E8F2EA; --gold: #B0862A;
+    --gold-soft: #F7F0DC; --shadow-sm: 0 1px 2px rgba(16,36,27,.05);
+    --shadow: 0 2px 4px rgba(16,36,27,.04), 0 18px 40px -20px rgba(16,36,27,.22);
+    --shadow-lg: 0 30px 60px -24px rgba(4,103,47,.30);
+  }
+  :root[data-theme="dark"] {
+    --ground: #0D110B; --ground-2: #141A11; --surface: #171E13; --ink: #E9EFE3;
+    --muted: #A0AC9B; --faint: #6F7C69; --line: #29321F; --green: #57BB7E;
+    --green-deep: #74CB95; --green-ink: #BFE6CC; --green-soft: #182617; --gold: #D3B058;
+    --gold-soft: #251F0F; --shadow-sm: 0 1px 2px rgba(0,0,0,.4);
+    --shadow: 0 2px 4px rgba(0,0,0,.3), 0 22px 48px -22px rgba(0,0,0,.7);
+    --shadow-lg: 0 34px 70px -26px rgba(0,0,0,.8);
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--ink);
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .serif { font-family: Georgia, "Iowan Old Style", "Times New Roman", ui-serif, serif; }
+  .eyebrow {
+    font-size: .74rem; font-weight: 700; letter-spacing: .16em;
+    text-transform: uppercase; color: var(--green);
+  }
+  a { color: inherit; }
+  .shell { max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
+
+  /* Nav */
+  nav {
+    position: sticky; top: 0; z-index: 40;
+    background: color-mix(in srgb, var(--ground) 82%, transparent);
+    backdrop-filter: saturate(1.4) blur(12px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-in { max-width: var(--maxw); margin: 0 auto; padding: 13px 24px; display: flex; align-items: center; gap: 14px; }
+  .brand { display: flex; align-items: center; gap: 11px; font-weight: 700; font-size: .98rem; letter-spacing: -.01em; }
+  .brand .cl { width: 31px; height: auto; flex: none; }
+  .brand small { display: block; font-weight: 600; font-size: .66rem; letter-spacing: .1em; text-transform: uppercase; color: var(--green); }
+  .nav-spacer { flex: 1; }
+  .nav-links { display: flex; gap: 22px; font-size: .9rem; color: var(--muted); }
+  .nav-links a { text-decoration: none; }
+  .nav-links a:hover { color: var(--green); }
+
+  /* Buttons */
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    font: inherit; font-weight: 650; font-size: .96rem;
+    padding: 12px 22px; border-radius: 11px; cursor: pointer;
+    text-decoration: none; border: 1.5px solid transparent; transition: all .16s; white-space: nowrap;
+  }
+  .btn.primary { background: var(--green); color: #fff; box-shadow: 0 8px 20px -8px color-mix(in srgb, var(--green) 60%, transparent); }
+  .btn.primary:hover { background: var(--green-deep); transform: translateY(-1px); box-shadow: 0 12px 26px -8px color-mix(in srgb, var(--green) 65%, transparent); }
+  .btn.ghost { background: var(--surface); color: var(--ink); border-color: var(--line); }
+  .btn.ghost:hover { border-color: var(--green); color: var(--green); transform: translateY(-1px); }
+  .btn.gold { background: var(--gold); color: #fff; }
+  .btn.gold:hover { filter: brightness(1.05); transform: translateY(-1px); }
+  .btn.sm { padding: 9px 16px; font-size: .88rem; border-radius: 9px; }
+  .btn:focus-visible { outline: 3px solid color-mix(in srgb, var(--green) 40%, transparent); outline-offset: 2px; }
+
+  /* Hero */
+  header.hero { position: relative; overflow: hidden; }
+  .hero-bg { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+  .hero-in { position: relative; z-index: 1; padding: 74px 0 70px; }
+  .hero h1 {
+    font-weight: 600; letter-spacing: -.02em; line-height: 1.05;
+    font-size: clamp(2.3rem, 6.2vw, 4.1rem); margin: 18px 0 0; max-width: 15ch; text-wrap: balance;
+  }
+  .hero h1 em { font-style: italic; color: var(--green); }
+  .hero .lede { font-size: clamp(1.05rem, 2.2vw, 1.28rem); color: var(--muted); max-width: 52ch; margin: 22px 0 0; }
+  .hero-cta { display: flex; flex-wrap: wrap; gap: 13px; margin-top: 32px; }
+  .trust { margin-top: 22px; font-size: .85rem; color: var(--muted); display: flex; align-items: center; gap: 8px; }
+  .trust svg { color: var(--green); flex: none; }
+
+  /* Section frame */
+  section { padding: 66px 0; }
+  section.tint { background: var(--ground-2); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .sec-head { max-width: 60ch; }
+  .sec-head h2 { font-weight: 600; letter-spacing: -.015em; font-size: clamp(1.7rem, 4vw, 2.4rem); margin: 12px 0 0; text-wrap: balance; }
+  .sec-head p { color: var(--muted); font-size: 1.08rem; margin: 14px 0 0; }
+
+  /* Pledge / four H */
+  .pledge-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 40px; }
+  .h-card {
+    background: var(--surface); border: 1px solid var(--line); border-radius: var(--r);
+    padding: 24px 22px 26px; box-shadow: var(--shadow-sm); position: relative; overflow: hidden;
+  }
+  .h-card .big { font-family: Georgia, serif; font-size: 3rem; font-weight: 600; color: var(--green); line-height: 1; }
+  .h-card h3 { margin: 12px 0 4px; font-size: 1.16rem; }
+  .h-card p { margin: 0; color: var(--muted); font-size: .95rem; }
+  .h-card::after { content: ""; position: absolute; right: -22px; bottom: -22px; width: 84px; height: 84px; background: var(--green-soft); border-radius: 50%; opacity: .6; }
+
+  /* Ways to give */
+  .give-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 40px; }
+  .give {
+    background: var(--surface); border: 1px solid var(--line); border-radius: var(--r);
+    padding: 28px 26px 30px; display: flex; flex-direction: column; box-shadow: var(--shadow);
+    transition: transform .18s, box-shadow .18s; position: relative;
+  }
+  .give:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+  .give.feature { border-color: color-mix(in srgb, var(--green) 40%, var(--line)); }
+  .give .tag {
+    position: absolute; top: -11px; left: 24px; background: var(--green); color: #fff;
+    font-size: .66rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+    padding: 4px 11px; border-radius: 999px;
+  }
+  .give .ic { width: 44px; height: 44px; border-radius: 12px; background: var(--green-soft); color: var(--green); display: grid; place-items: center; margin-bottom: 16px; }
+  .give h3 { margin: 0 0 6px; font-size: 1.28rem; }
+  .give .amt { font-family: Georgia, serif; font-size: 1.05rem; color: var(--gold); font-weight: 600; margin: 0 0 10px; }
+  .give p { margin: 0 0 22px; color: var(--muted); font-size: .96rem; flex: 1; }
+  .give .btn { width: 100%; }
+
+  /* Banquet */
+  .banner {
+    background: linear-gradient(135deg, var(--green-deep), var(--green));
+    color: #fff; border-radius: 22px; padding: 46px 44px; position: relative; overflow: hidden;
+    box-shadow: var(--shadow-lg);
+  }
+  .banner .eyebrow { color: color-mix(in srgb, #fff 82%, var(--green)); }
+  .banner h2 { color: #fff; font-weight: 600; letter-spacing: -.015em; font-size: clamp(1.8rem, 4vw, 2.5rem); margin: 12px 0 0; max-width: 20ch; text-wrap: balance; }
+  .banner p { color: rgba(255,255,255,.9); font-size: 1.1rem; max-width: 54ch; margin: 16px 0 0; }
+  .banner .btn { margin-top: 28px; }
+  .banner .btn.primary { background: #fff; color: var(--green-deep); }
+  .banner .btn.primary:hover { background: #fff; filter: brightness(.96); }
+  .banner .cl-water { position: absolute; right: -40px; top: -40px; width: 260px; height: 260px; opacity: .13; }
+
+  /* Alumni split */
+  .split { display: grid; grid-template-columns: 1.1fr .9fr; gap: 48px; align-items: center; }
+  .split .card {
+    background: var(--surface); border: 1px solid var(--line); border-radius: var(--r);
+    padding: 30px; box-shadow: var(--shadow);
+  }
+  .split .card h3 { margin: 0 0 6px; font-size: 1.3rem; }
+  .split .card p { color: var(--muted); margin: 0 0 20px; }
+
+  /* Footer */
+  footer { background: var(--green-ink); color: color-mix(in srgb, #fff 88%, var(--green)); padding: 52px 0 34px; margin-top: 8px; }
+  @media (prefers-color-scheme: dark) { footer { background: #0A0F08; } }
+  :root[data-theme="dark"] footer { background: #0A0F08; }
+  :root[data-theme="light"] footer { background: var(--green-ink); color: color-mix(in srgb, #fff 88%, var(--green)); }
+  .foot-grid { display: flex; justify-content: space-between; gap: 32px; flex-wrap: wrap; align-items: flex-start; }
+  .foot-brand { display: flex; align-items: center; gap: 12px; font-family: Georgia, serif; font-size: 1.15rem; }
+  .foot-brand .cl { width: 36px; height: auto; }
+  footer p { margin: 0; font-size: .9rem; opacity: .82; max-width: 40ch; }
+  .foot-col h4 { font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; margin: 0 0 12px; opacity: .7; }
+  .foot-col a { display: block; color: inherit; text-decoration: none; opacity: .85; font-size: .92rem; margin-bottom: 8px; }
+  .foot-col a:hover { opacity: 1; text-decoration: underline; }
+  .foot-rule { border: none; border-top: 1px solid rgba(255,255,255,.14); margin: 34px 0 20px; }
+  .foot-fine { font-size: .8rem; opacity: .62; }
+
+  @media (max-width: 860px) {
+    .pledge-grid { grid-template-columns: repeat(2, 1fr); }
+    .give-grid { grid-template-columns: 1fr; }
+    .split { grid-template-columns: 1fr; gap: 28px; }
+    .nav-links { display: none; }
+  }
+  @media (max-width: 460px) {
+    .pledge-grid { grid-template-columns: 1fr; }
+    .banner { padding: 34px 26px; }
+  }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+</style>
+</head>
+<body>
+<!-- reusable clovers -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <!-- simple silhouette for faint background decor -->
+  <g id="clover">
+    <path d="M50 50 C 50 30, 30 22, 22 30 C 14 38, 22 50, 50 50 Z" transform="rotate(-45 50 50)"/>
+    <path d="M50 50 C 50 30, 30 22, 22 30 C 14 38, 22 50, 50 50 Z" transform="rotate(45 50 50)"/>
+    <path d="M50 50 C 50 30, 30 22, 22 30 C 14 38, 22 50, 50 50 Z" transform="rotate(135 50 50)"/>
+    <path d="M50 50 C 50 30, 30 22, 22 30 C 14 38, 22 50, 50 50 Z" transform="rotate(225 50 50)"/>
+  </g>
+  <!-- official-style 4-H emblem: four heart leaves with white H's + stem -->
+  <path id="leaf4" d="M50 49 C 41 41 32 44 25 37 C 16 29 19 14 33 14 C 42 14 47 20 50 26 C 53 20 58 14 67 14 C 81 14 84 29 75 37 C 68 44 59 41 50 49 Z"/>
+  <g id="h4" fill="#ffffff">
+    <rect x="43" y="24" width="3.6" height="15" rx="0.5"/>
+    <rect x="52.9" y="24" width="3.6" height="15" rx="0.5"/>
+    <rect x="43" y="29.7" width="13.5" height="3.6" rx="0.5"/>
+  </g>
+  <g id="clover4h">
+    <path d="M50 52 C 49 72 50 92 47 111 L 55 111 C 54 92 55 72 52 53 Z" fill="#43A06A"/>
+    <g fill="#43A06A">
+      <use href="#leaf4" transform="rotate(45 50 50)"/>
+      <use href="#leaf4" transform="rotate(135 50 50)"/>
+      <use href="#leaf4" transform="rotate(225 50 50)"/>
+      <use href="#leaf4" transform="rotate(315 50 50)"/>
+    </g>
+    <use href="#h4" transform="rotate(45 50 50)"/>
+    <use href="#h4" transform="rotate(135 50 50)"/>
+    <use href="#h4" transform="rotate(225 50 50)"/>
+    <use href="#h4" transform="rotate(315 50 50)"/>
+  </g>
+</defs></svg>
+
+<nav>
+  <div class="nav-in">
+    <a class="brand" href="#top" style="text-decoration:none">
+      <svg class="cl" viewBox="0 0 100 114" aria-hidden="true"><use href="#clover4h"/></svg>
+      <span>Cleveland County<small>4-H Foundation</small></span>
+    </a>
+    <div class="nav-spacer"></div>
+    <div class="nav-links">
+      <a href="#give">Ways to Give</a>
+      <a href="#banquet">The Banquet</a>
+      <a href="#connect">Alumni</a>
+    </div>
+    <a class="btn primary sm" href="https://checkout.square.site/merchant/MLAEHHASYZ277/checkout/XHMNCW7ZCXHQAW6TO4HHCJDJ" target="_blank" rel="noopener" data-donate>Donate</a>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <svg class="hero-bg" viewBox="0 0 1080 620" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <g fill="var(--green)" opacity="0.05">
+      <g transform="translate(880,120) scale(2.6)"><use href="#clover"/></g>
+      <g transform="translate(120,470) scale(1.7)"><use href="#clover"/></g>
+      <g transform="translate(960,470) scale(1.1)"><use href="#clover"/></g>
+    </g>
+  </svg>
+  <div class="shell hero-in">
+    <span class="eyebrow">Cleveland County · Oklahoma</span>
+    <h1 class="serif">The hands that grow our county <em>start in 4-H.</em></h1>
+    <p class="lede">We fund the clubs, camps, scholarships, and leaders that shape Cleveland County's young people — head, heart, hands, and health. Your gift keeps 4-H thriving for the next generation.</p>
+    <div class="hero-cta">
+      <a class="btn primary" href="https://checkout.square.site/merchant/MLAEHHASYZ277/checkout/XHMNCW7ZCXHQAW6TO4HHCJDJ" target="_blank" rel="noopener" data-donate>♥ Donate Now</a>
+      <a class="btn ghost" href="#connect" data-join>Join Our Donor List</a>
+    </div>
+    <div class="trust">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      A registered 501(c)(3) nonprofit — every gift is tax-deductible.
+    </div>
+  </div>
+</header>
+
+<section class="tint">
+  <div class="shell">
+    <div class="sec-head">
+      <span class="eyebrow">Why we give</span>
+      <h2 class="serif">Four simple words, one lasting promise.</h2>
+      <p>Every 4-H'er in Cleveland County recites the same pledge. Your support is what turns those words into real clubs, real projects, and real futures.</p>
+    </div>
+    <div class="pledge-grid">
+      <div class="h-card"><div class="big serif">H</div><h3>Head</h3><p>to clearer thinking — project work, judging, and problem-solving.</p></div>
+      <div class="h-card"><div class="big serif">H</div><h3>Heart</h3><p>to greater loyalty — leadership, citizenship, and community.</p></div>
+      <div class="h-card"><div class="big serif">H</div><h3>Hands</h3><p>to larger service — volunteering, mentoring, and giving back.</p></div>
+      <div class="h-card"><div class="big serif">H</div><h3>Health</h3><p>to better living — for their club, their community, and their world.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="give">
+  <div class="shell">
+    <div class="sec-head">
+      <span class="eyebrow">Ways to give</span>
+      <h2 class="serif">Choose the way that fits you.</h2>
+      <p>One-time or every month, big or small — it all grows 4-H in Cleveland County. Payments are handled securely through Square.</p>
+    </div>
+    <div class="give-grid">
+      <div class="give">
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.8 4.6a5.5 5.5 0 00-7.8 0L12 5.6l-1-1a5.5 5.5 0 10-7.8 7.8l1 1 7.8 7.8 7.8-7.8 1-1a5.5 5.5 0 000-7.8z" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <h3>Give once</h3>
+        <p class="amt">Any amount</p>
+        <p>Make a single gift today. Every dollar goes straight to youth programming in the county.</p>
+        <a class="btn primary" href="https://checkout.square.site/merchant/MLAEHHASYZ277/checkout/XHMNCW7ZCXHQAW6TO4HHCJDJ" target="_blank" rel="noopener" data-donate>Donate</a>
+      </div>
+      <div class="give feature">
+        <span class="tag">Most impact</span>
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 6l-9.5 9.5-5-5L1 18" stroke-linecap="round" stroke-linejoin="round"/><path d="M17 6h6v6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <h3>Become a sustaining donor</h3>
+        <p class="amt">$10 · $25 · $50 a month</p>
+        <p>A small monthly pledge gives us steady, dependable support all year long. Cancel anytime.</p>
+        <a class="btn primary" href="https://checkout.square.site/merchant/MLAEHHASYZ277/checkout/XHMNCW7ZCXHQAW6TO4HHCJDJ" target="_blank" rel="noopener" data-donate>Pledge monthly</a>
+      </div>
+      <div class="give">
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.4 5.4 5.9.6-4.4 4 1.3 5.8L12 20l-5.2 2.8 1.3-5.8-4.4-4 5.9-.6z" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <h3>Sponsor an award</h3>
+        <p class="amt">Recognized at the banquet</p>
+        <p>Underwrite a trophy, buckle, or scholarship and be honored at our annual banquet.</p>
+        <a class="btn gold" href="#connect" data-join>Ask about sponsoring</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="tint" id="banquet">
+  <div class="shell">
+    <div class="banner">
+      <svg class="cl-water" viewBox="0 0 100 108" fill="#fff" aria-hidden="true"><use href="#clover"/><rect x="48" y="50" width="4" height="40" rx="2"/></svg>
+      <span class="eyebrow">Save the date</span>
+      <h2 class="serif">The Annual 4-H Foundation Banquet</h2>
+      <p>An evening to celebrate our members, thank our sponsors, and invest in the year ahead. Join us — and be among the first to become a founding sustaining donor.</p>
+      <a class="btn primary" href="#connect" data-join>Save my seat &amp; join the list</a>
+    </div>
+  </div>
+</section>
+
+<section id="connect">
+  <div class="shell">
+    <div class="split">
+      <div class="sec-head">
+        <span class="eyebrow">Alumni &amp; friends</span>
+        <h2 class="serif">Once a 4-H'er, always a 4-H'er.</h2>
+        <p>Were you in 4-H growing up? Did your kids show at the fair? Add your name to our donor list and we'll keep you posted on ways to give back, sponsorship opportunities, and events — no spam, just the good stuff.</p>
+      </div>
+      <div class="card">
+        <h3 class="serif">Join our donor list</h3>
+        <p>Takes about 30 seconds. <em>Online sign-up opening soon &mdash; or add your name with us at the banquet.</em></p>
+        <a class="btn primary" href="#connect" data-join style="width:100%">Add me to the list</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="shell">
+    <div class="foot-grid">
+      <div style="max-width:34ch">
+        <div class="foot-brand">
+          <svg class="cl" viewBox="0 0 100 114" aria-hidden="true"><use href="#clover4h"/></svg>
+          Cleveland County 4-H Foundation
+        </div>
+        <p style="margin-top:14px">Growing the next generation of leaders, makers, and neighbors across Cleveland County, Oklahoma.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Give</h4>
+        <a href="https://checkout.square.site/merchant/MLAEHHASYZ277/checkout/XHMNCW7ZCXHQAW6TO4HHCJDJ" target="_blank" rel="noopener" data-donate>Donate now</a>
+        <a href="#give">Become a sustaining donor</a>
+        <a href="#give">Sponsor an award</a>
+      </div>
+      <div class="foot-col">
+        <h4>Connect</h4>
+        <a href="#connect" data-join>Join our donor list</a>
+        <a href="#banquet">The annual banquet</a>
+        <a href="#connect">Contact us</a>
+      </div>
+    </div>
+    <hr class="foot-rule">
+    <p class="foot-fine">Cleveland County 4-H Foundation is a registered 501(c)(3) nonprofit organization. Contributions are tax-deductible to the extent allowed by law. EIN available on request.</p>
+  </div>
+</footer>
+</body>
+</html>
