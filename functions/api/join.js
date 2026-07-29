@@ -23,6 +23,7 @@ export async function onRequestPost({ request, env }) {
     const interests = Array.isArray(b.interests)
       ? b.interests.map((x) => clean(x, 60)).filter(Boolean).join("; ")
       : clean(b.interests, 240);
+    const club = clean(b.club, 120);
     const monthly = b.monthly ? 1 : 0;
     const amount = clean(b.amount, 20);
 
@@ -32,14 +33,16 @@ export async function onRequestPost({ request, env }) {
       `CREATE TABLE IF NOT EXISTS signups (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         first TEXT, last TEXT, email TEXT, phone TEXT,
-        connection TEXT, interests TEXT, monthly INTEGER, amount TEXT, created TEXT
+        connection TEXT, club TEXT, interests TEXT, monthly INTEGER, amount TEXT, created TEXT
       )`
     ).run();
+    // Add the club column if this table was created before club existed.
+    try { await env.DB.prepare("ALTER TABLE signups ADD COLUMN club TEXT").run(); } catch (e) {}
 
     await env.DB.prepare(
-      `INSERT INTO signups (first, last, email, phone, connection, interests, monthly, amount, created)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`
-    ).bind(first, last, email, phone, connection, interests, monthly, amount, new Date().toISOString()).run();
+      `INSERT INTO signups (first, last, email, phone, connection, club, interests, monthly, amount, created)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
+    ).bind(first, last, email, phone, connection, club, interests, monthly, amount, new Date().toISOString()).run();
 
     return json({ ok: true });
   } catch (e) {

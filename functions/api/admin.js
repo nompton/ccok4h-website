@@ -57,9 +57,10 @@ async function ensureTables(env) {
     `CREATE TABLE IF NOT EXISTS signups (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       first TEXT, last TEXT, email TEXT, phone TEXT,
-      connection TEXT, interests TEXT, monthly INTEGER, amount TEXT, created TEXT
+      connection TEXT, club TEXT, interests TEXT, monthly INTEGER, amount TEXT, created TEXT
     )`
   ).run();
+  try { await env.DB.prepare("ALTER TABLE signups ADD COLUMN club TEXT").run(); } catch (e) {}
   await env.DB.prepare(
     `CREATE TABLE IF NOT EXISTS settings (name TEXT PRIMARY KEY, value TEXT)`
   ).run();
@@ -117,8 +118,8 @@ function hexToBytes(hex) {
 }
 
 function toCSV(rows) {
-  const cols = ["id", "first", "last", "email", "phone", "connection", "interests", "monthly", "amount", "created"];
-  const head = ["ID", "First", "Last", "Email", "Phone", "Connection", "Interested in", "Monthly", "Amount", "Signed up"];
+  const cols = ["id", "first", "last", "email", "phone", "connection", "club", "interests", "monthly", "amount", "created"];
+  const head = ["ID", "First", "Last", "Email", "Phone", "Connection", "Club / years", "Interested in", "Monthly", "Amount", "Signed up"];
   const q = (v) => `"${String(v == null ? "" : v).replace(/"/g, '""')}"`;
   const lines = [head.map(q).join(",")];
   for (const r of rows) lines.push(cols.map((c) => q(c === "monthly" ? (r.monthly ? "Yes" : "No") : r[c])).join(","));

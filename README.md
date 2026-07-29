@@ -8,9 +8,18 @@ It's a single static page — no build step, no framework, no database. Just `in
 
 | File | What it is |
 |------|-----------|
-| `index.html` | The whole website |
+| `index.html` | The main website |
+| `donate.html` | Focused giving page — **ccok4h.org/donate** |
+| `alumni.html` | Alumni reconnect/enroll form — **ccok4h.org/alumni** |
+| `join.html` | Donor-list enroll form — **ccok4h.org/join** |
+| `admin.html` | Private organizer view — **ccok4h.org/admin** |
+| `assets/emblom.svg` | Official 4-H emblem used as the logo |
+| `assets/pages.css` | Shared styling for the donate/alumni/join pages |
+| `assets/form.js` | Shared enrollment-form handler (posts to `/api/join`) |
 | `assets/favicon.png` | Browser-tab icon (4-H clover) |
-| `assets/og-image.png` | Preview image shown when the link is shared on Facebook/text |
+| `assets/og-image.png` | Preview image shown when a link is shared on Facebook/text |
+
+Cloudflare Pages serves these at clean URLs (no `.html`), e.g. `/donate`, `/alumni`, `/join`.
 
 ## Deploying with Cloudflare Pages
 

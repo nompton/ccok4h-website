@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Join Our Donor List — Cleveland County 4-H Foundation</title>
+<meta name="description" content="Join the Cleveland County 4-H Foundation donor list for ways to give, sponsorship opportunities, and events.">
+<link rel="icon" type="image/png" href="/assets/favicon.png">
+<meta name="theme-color" content="#00843D">
+<meta property="og:title" content="Join Our Donor List — Cleveland County 4-H Foundation">
+<meta property="og:description" content="Stay connected to Cleveland County 4-H. No spam, just the good stuff.">
+<meta property="og:image" content="https://ccok4h.org/assets/og-image.png">
+<link rel="stylesheet" href="/assets/pages.css">
+</head>
+<body>
+<div class="page">
+  <div class="top">
+    <a class="home" href="/"><img src="/assets/emblom.svg" alt="Cleveland County 4-H"></a>
+    <span class="eyebrow">Cleveland County 4-H Foundation</span>
+    <h1 class="serif">Join our donor list</h1>
+    <p>Alumni, families &amp; friends — hear about ways to give, sponsorships, and events. No spam.</p>
+  </div>
+
+  <div class="card">
+    <div class="ok" id="enrollOk" style="display:none">
+      <div class="big">🍀</div>
+      <h2>You're on the list!</h2>
+      <p>Thank you for supporting Cleveland County 4-H.</p>
+    </div>
+
+    <form id="enroll" novalidate>
+      <div class="msg err" id="enrollErr"></div>
+
+      <div class="frow">
+        <div class="fld"><span class="lb">First name</span><input name="first" autocomplete="given-name" required></div>
+        <div class="fld"><span class="lb">Last name</span><input name="last" autocomplete="family-name" required></div>
+      </div>
+      <div class="fld"><span class="lb">Email</span><input name="email" type="email" autocomplete="email" placeholder="you@example.com" required></div>
+      <div class="frow">
+        <div class="fld"><span class="lb">Phone <span class="opt">· optional</span></span><input name="phone" type="tel" autocomplete="tel"></div>
+        <div class="fld"><span class="lb">Your 4-H connection</span>
+          <select name="connection">
+            <option value="">Choose…</option>
+            <option>Alumni</option>
+            <option>Current family / parent</option>
+            <option>Volunteer / leader</option>
+            <option>Community supporter</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="fld"><span class="lb">Keep me posted about</span>
+        <div class="ints">
+          <label class="int"><input type="checkbox" name="interest" value="Donation opportunities"> Donations</label>
+          <label class="int"><input type="checkbox" name="interest" value="Sponsorship / award opportunities"> Sponsor an award</label>
+          <label class="int"><input type="checkbox" name="interest" value="Event invitations"> Events</label>
+          <label class="int"><input type="checkbox" name="interest" value="Volunteering"> Volunteering</label>
+        </div>
+      </div>
+      <label class="mrow"><input type="checkbox" name="monthly"> I'd like to give monthly</label>
+      <input class="hpot" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+      <button class="btn primary" type="submit" id="enrollBtn">Add me to the list</button>
+    </form>
+  </div>
+
+  <p class="foot"><a href="/donate">Ready to give now? &rarr;</a></p>
+</div>
+<script src="/assets/form.js"></script>
+</body>
+</html>
