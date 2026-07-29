@@ -13,78 +13,153 @@
   .wrap { max-width:1000px; margin:0 auto; padding:32px 20px 60px; }
   h1 { font-family:Georgia,serif; font-size:1.6rem; margin:0 0 4px; }
   .sub { color:var(--muted); margin:0 0 24px; font-size:.95rem; }
-  .bar { display:flex; gap:10px; flex-wrap:wrap; align-items:center; background:var(--surface); border:1px solid var(--line); border-radius:12px; padding:14px 16px; margin-bottom:20px; }
-  input[type=password] { font:inherit; padding:10px 12px; border:1.5px solid var(--line); border-radius:9px; flex:1; min-width:200px; }
-  input:focus { outline:none; border-color:var(--green); }
-  button { font:inherit; font-weight:600; padding:10px 18px; border-radius:9px; border:1.5px solid transparent; cursor:pointer; }
-  .primary { background:var(--green); color:#fff; }
+
+  /* Gate (setup / login) */
+  .gate { max-width:400px; margin:6vh auto 0; background:var(--surface); border:1px solid var(--line); border-radius:16px; padding:28px 26px; box-shadow:0 18px 40px -22px rgba(16,36,27,.3); }
+  .gate .clover { display:block; margin:0 auto 14px; width:46px; height:auto; }
+  .gate h2 { font-family:Georgia,serif; text-align:center; margin:0 0 4px; font-size:1.3rem; }
+  .gate .hint { text-align:center; color:var(--muted); font-size:.9rem; margin:0 0 20px; }
+  .field { display:flex; flex-direction:column; gap:5px; margin-bottom:14px; }
+  .field label { font-size:.72rem; font-weight:700; text-transform:uppercase; letter-spacing:.04em; color:var(--muted); }
+  input { font:inherit; padding:11px 13px; border:1.5px solid var(--line); border-radius:9px; width:100%; }
+  input:focus { outline:none; border-color:var(--green); box-shadow:0 0 0 3px color-mix(in srgb, var(--green) 20%, transparent); }
+  button { font:inherit; font-weight:650; padding:12px 18px; border-radius:10px; border:1.5px solid transparent; cursor:pointer; }
+  .primary { background:var(--green); color:#fff; width:100%; }
   .primary:hover { background:var(--green-deep); }
-  .ghost { background:var(--surface); border-color:var(--line); color:var(--ink); }
+  .primary:disabled { opacity:.6; cursor:default; }
+  .ghost { background:var(--surface); border-color:var(--line); color:var(--ink); padding:9px 15px; font-size:.9rem; }
   .ghost:hover { border-color:var(--green); color:var(--green); }
+  .err { color:#A5342A; font-size:.88rem; margin:0 0 12px; display:none; }
+  .err.show { display:block; }
+
+  /* App */
+  .topbar { display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin-bottom:20px; }
+  .topbar .spacer { flex:1; }
   .stats { display:flex; gap:12px; flex-wrap:wrap; margin-bottom:18px; }
   .stat { background:var(--surface); border:1px solid var(--line); border-radius:11px; padding:12px 18px; }
   .stat b { font-family:Georgia,serif; font-size:1.5rem; color:var(--green); display:block; line-height:1; }
   .stat span { font-size:.72rem; text-transform:uppercase; letter-spacing:.05em; color:var(--muted); }
   .scroll { overflow-x:auto; border:1px solid var(--line); border-radius:12px; background:var(--surface); }
-  table { border-collapse:collapse; width:100%; font-size:.85rem; min-width:760px; }
+  table { border-collapse:collapse; width:100%; font-size:.85rem; min-width:780px; }
   th,td { text-align:left; padding:10px 12px; border-bottom:1px solid var(--line); white-space:nowrap; }
   th { background:#F0F4EC; font-size:.68rem; text-transform:uppercase; letter-spacing:.04em; color:var(--muted); position:sticky; top:0; }
   tbody tr:last-child td { border-bottom:none; }
   .pill { background:var(--soft); color:var(--green-deep); font-size:.72rem; padding:2px 8px; border-radius:999px; }
-  .note { font-size:.9rem; color:var(--muted); }
-  .err { color:#A5342A; }
+  .hidden { display:none; }
 </style>
 </head>
 <body>
 <div class="wrap">
-  <h1>🍀 Donor List</h1>
-  <p class="sub">Cleveland County 4-H Foundation — private organizer view.</p>
 
-  <div class="bar">
-    <input type="password" id="key" placeholder="Enter admin key" autocomplete="off">
-    <button class="primary" id="load">Load list</button>
-    <button class="ghost" id="csv">Download CSV</button>
-    <span class="note" id="status"></span>
+  <!-- GATE: setup or login -->
+  <div class="gate" id="gate">
+    <svg class="clover" viewBox="0 0 100 114" aria-hidden="true">
+      <defs>
+        <path id="l" d="M50 49 C 41 41 32 44 25 37 C 16 29 19 14 33 14 C 42 14 47 20 50 26 C 53 20 58 14 67 14 C 81 14 84 29 75 37 C 68 44 59 41 50 49 Z"/>
+        <g id="h" fill="#fff"><rect x="43" y="24" width="3.6" height="15" rx="0.5"/><rect x="52.9" y="24" width="3.6" height="15" rx="0.5"/><rect x="43" y="29.7" width="13.5" height="3.6" rx="0.5"/></g>
+      </defs>
+      <circle cx="50" cy="50" r="15" fill="#00843D"/>
+      <path d="M50 52 C 49 72 50 92 47 111 L 55 111 C 54 92 55 72 52 53 Z" fill="#00843D"/>
+      <g fill="#00843D"><use href="#l" transform="rotate(45 50 50)"/><use href="#l" transform="rotate(135 50 50)"/><use href="#l" transform="rotate(225 50 50)"/><use href="#l" transform="rotate(315 50 50)"/></g>
+      <use href="#h" transform="rotate(45 50 50)"/><use href="#h" transform="rotate(135 50 50)"/><use href="#h" transform="rotate(225 50 50)"/><use href="#h" transform="rotate(315 50 50)"/>
+    </svg>
+    <h2 id="gateTitle">Loading…</h2>
+    <p class="hint" id="gateHint"></p>
+    <p class="err" id="gateErr"></p>
+
+    <form id="gateForm" class="hidden" autocomplete="off">
+      <div class="field">
+        <label for="gu">Username</label>
+        <input id="gu" name="username" autocomplete="username" autocapitalize="none">
+      </div>
+      <div class="field">
+        <label for="gp">Password</label>
+        <input id="gp" name="password" type="password" autocomplete="current-password">
+      </div>
+      <div class="field hidden" id="confirmField">
+        <label for="gp2">Confirm password</label>
+        <input id="gp2" type="password" autocomplete="new-password">
+      </div>
+      <button class="primary" type="submit" id="gateBtn">Continue</button>
+    </form>
   </div>
 
-  <div class="stats" id="stats" style="display:none">
-    <div class="stat"><b id="sTotal">0</b><span>Total</span></div>
-    <div class="stat"><b id="sMonthly">0</b><span>Monthly pledges</span></div>
-    <div class="stat"><b id="sAlumni">0</b><span>Alumni</span></div>
+  <!-- APP: the list -->
+  <div id="app" class="hidden">
+    <div class="topbar">
+      <div>
+        <h1>🍀 Donor List</h1>
+        <p class="sub" style="margin:0">Cleveland County 4-H Foundation — organizer view.</p>
+      </div>
+      <div class="spacer"></div>
+      <button class="ghost" id="csvBtn">Download CSV</button>
+      <button class="ghost" id="logoutBtn">Log out</button>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><b id="sTotal">0</b><span>Total</span></div>
+      <div class="stat"><b id="sMonthly">0</b><span>Monthly pledges</span></div>
+      <div class="stat"><b id="sAlumni">0</b><span>Alumni</span></div>
+    </div>
+
+    <div class="scroll">
+      <table>
+        <thead><tr><th>Name</th><th>Email</th><th>Phone</th><th>Connection</th><th>Interested in</th><th>Monthly</th><th>Signed up</th></tr></thead>
+        <tbody id="tbody"></tbody>
+      </table>
+    </div>
   </div>
 
-  <div class="scroll" id="tableWrap" style="display:none">
-    <table>
-      <thead><tr><th>Name</th><th>Email</th><th>Phone</th><th>Connection</th><th>Interested in</th><th>Monthly</th><th>Signed up</th></tr></thead>
-      <tbody id="tbody"></tbody>
-    </table>
-  </div>
 </div>
 
 <script>
   var $ = function (id) { return document.getElementById(id); };
   var esc = function (s) { return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) { return ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]; }); };
+  var MODE = "login";           // "setup" or "login"
+  var CREDS = null;             // { username, password } after auth
 
-  function load() {
-    var key = $("key").value.trim();
-    if (!key) { setStatus("Enter your admin key.", true); return; }
-    setStatus("Loading…", false);
-    fetch("/api/export?format=json&key=" + encodeURIComponent(key))
+  // Remember creds for this browser session so a refresh keeps you logged in.
+  try { var saved = sessionStorage.getItem("ccok4h_admin"); if (saved) CREDS = JSON.parse(saved); } catch (e) {}
+
+  function gateErr(msg) { var e = $("gateErr"); if (!msg) { e.className = "err"; return; } e.textContent = msg; e.className = "err show"; }
+
+  function showGate(mode) {
+    MODE = mode;
+    $("app").classList.add("hidden");
+    $("gate").classList.remove("hidden");
+    $("gateForm").classList.remove("hidden");
+    $("confirmField").classList.toggle("hidden", mode !== "setup");
+    if (mode === "setup") {
+      $("gateTitle").textContent = "Create the admin account";
+      $("gateHint").textContent = "You're the first here — this becomes the organizer login.";
+      $("gateBtn").textContent = "Create account";
+      $("gu").autocomplete = "username"; $("gp").autocomplete = "new-password";
+    } else {
+      $("gateTitle").textContent = "Organizer sign in";
+      $("gateHint").textContent = "Enter your admin username and password.";
+      $("gateBtn").textContent = "Sign in";
+      $("gp").autocomplete = "current-password";
+    }
+    setTimeout(function () { $("gu").focus(); }, 40);
+  }
+
+  function showApp() { $("gate").classList.add("hidden"); $("app").classList.remove("hidden"); }
+
+  function api(body) {
+    return fetch("/api/admin", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(body) });
+  }
+
+  function loadList() {
+    return api({ action: "list", username: CREDS.username, password: CREDS.password })
       .then(function (r) {
-        if (r.status === 401) throw new Error("Wrong key.");
-        if (!r.ok) throw new Error("Couldn't load (" + r.status + ").");
+        if (r.status === 401) throw new Error("auth");
+        if (!r.ok) throw new Error("Couldn't load the list.");
         return r.json();
       })
-      .then(function (rows) {
-        render(rows);
-        setStatus(rows.length + " signup" + (rows.length === 1 ? "" : "s") + " loaded.", false);
-      })
-      .catch(function (e) { setStatus(e.message, true); });
+      .then(function (data) { render(data.rows || []); showApp(); });
   }
 
   function render(rows) {
-    $("stats").style.display = "flex";
-    $("tableWrap").style.display = "block";
     $("sTotal").textContent = rows.length;
     $("sMonthly").textContent = rows.filter(function (r) { return r.monthly; }).length;
     $("sAlumni").textContent = rows.filter(function (r) { return r.connection === "Alumni"; }).length;
@@ -99,16 +174,71 @@
   }
 
   function downloadCsv() {
-    var key = $("key").value.trim();
-    if (!key) { setStatus("Enter your admin key first.", true); return; }
-    window.location.href = "/api/export?key=" + encodeURIComponent(key);
+    api({ action: "export", username: CREDS.username, password: CREDS.password })
+      .then(function (r) { if (!r.ok) throw new Error("Export failed."); return r.text(); })
+      .then(function (csv) {
+        var blob = new Blob([csv], { type: "text/csv" });
+        var a = document.createElement("a");
+        a.href = URL.createObjectURL(blob);
+        a.download = "ccok4h-donor-list-" + new Date().toISOString().slice(0, 10) + ".csv";
+        document.body.appendChild(a); a.click(); a.remove();
+        setTimeout(function () { URL.revokeObjectURL(a.href); }, 1000);
+      })
+      .catch(function () { alert("Couldn't download the CSV. Try logging in again."); });
   }
 
-  function setStatus(msg, isErr) { var s = $("status"); s.textContent = msg; s.className = "note" + (isErr ? " err" : ""); }
+  function logout() {
+    CREDS = null;
+    try { sessionStorage.removeItem("ccok4h_admin"); } catch (e) {}
+    init();
+  }
 
-  $("load").addEventListener("click", load);
-  $("csv").addEventListener("click", downloadCsv);
-  $("key").addEventListener("keydown", function (e) { if (e.key === "Enter") load(); });
+  // Decide whether to show setup or login (and auto-resume a saved session).
+  function init() {
+    fetch("/api/admin").then(function (r) { return r.json(); }).then(function (s) {
+      if (!s.configured) { showGate("setup"); return; }
+      if (CREDS) { loadList().catch(function () { showGate("login"); }); return; }
+      showGate("login");
+    }).catch(function () {
+      $("gateTitle").textContent = "Not connected yet";
+      $("gateHint").textContent = "The database isn't wired up yet. Finish the Cloudflare D1 setup, then reload.";
+    });
+  }
+
+  $("gateForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+    gateErr("");
+    var username = $("gu").value.trim();
+    var password = $("gp").value;
+    if (!username || !password) { gateErr("Enter a username and password."); return; }
+
+    if (MODE === "setup") {
+      if (password.length < 6) { gateErr("Use a password of at least 6 characters."); return; }
+      if (password !== $("gp2").value) { gateErr("Passwords don't match."); return; }
+      $("gateBtn").disabled = true;
+      api({ action: "setup", username: username, password: password })
+        .then(function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); })
+        .then(function (res) {
+          if (!res.ok || !res.j.ok) throw new Error(res.j && res.j.error || "Setup failed.");
+          CREDS = { username: username, password: password };
+          try { sessionStorage.setItem("ccok4h_admin", JSON.stringify(CREDS)); } catch (e) {}
+          return loadList();
+        })
+        .catch(function (err) { gateErr(err.message || "Setup failed."); })
+        .finally(function () { $("gateBtn").disabled = false; });
+    } else {
+      $("gateBtn").disabled = true;
+      CREDS = { username: username, password: password };
+      loadList()
+        .then(function () { try { sessionStorage.setItem("ccok4h_admin", JSON.stringify(CREDS)); } catch (e) {} })
+        .catch(function (err) { CREDS = null; gateErr(err.message === "auth" ? "Wrong username or password." : "Couldn't sign in."); })
+        .finally(function () { $("gateBtn").disabled = false; });
+    }
+  });
+
+  $("csvBtn").addEventListener("click", downloadCsv);
+  $("logoutBtn").addEventListener("click", logout);
+  init();
 </script>
 </body>
 </html>

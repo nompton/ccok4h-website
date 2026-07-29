@@ -38,24 +38,26 @@ After that, every future change is just: edit → push to GitHub → it goes liv
 The "Join our donor list" buttons open a sign-up form that saves straight into a
 **Cloudflare D1 database** — no Google Form, no third-party service.
 
-- `functions/api/join.js` — receives a signup (POST) and stores it. The table is
-  created automatically on the first signup.
-- `functions/api/export.js` — returns the list as CSV (or JSON), protected by an admin key.
-- `admin.html` — private organizer page at **/admin.html** to view the list and download the CSV.
+- `functions/api/join.js` — receives a signup (POST) and stores it. The tables are
+  created automatically on first use.
+- `functions/api/admin.js` — first-run account setup, login, and CSV/JSON export.
+  The admin username + a PBKDF2 hash of the password are stored in the database (never plain text).
+- `admin.html` — private organizer page at **/admin.html**.
 
 ### One-time setup in the Cloudflare dashboard
 
 1. **Create the database:** Storage & Databases → **D1** → **Create** → name it `ccok4h-donors`.
 2. **Bind it to the site:** Workers & Pages → `ccok4h-website` → **Settings → Bindings** (or
    *Functions*) → **Add → D1 database** → Variable name **`DB`** → select `ccok4h-donors`.
-3. **Set the admin password:** same project → **Settings → Variables and Secrets** →
-   add **`ADMIN_KEY`** = a password you choose (mark it a Secret).
-4. **Redeploy** (Deployments → Retry deployment) so the bindings take effect.
+3. **Redeploy** (Deployments → Retry deployment) so the binding takes effect.
+
+No environment variables or secrets to configure — the admin password is set from the web page.
 
 ### Seeing the signups
 
-Go to **ccok4h.org/admin.html**, enter your `ADMIN_KEY`, and you can view every signup or
-download the whole list as a CSV (opens in Excel / Google Sheets).
+Go to **ccok4h.org/admin.html**. The **first** visit asks you to create the organizer
+account (username + password) — that first account becomes the admin. After that, the page
+just asks you to sign in, and you can view every signup or download the list as a CSV.
 
 ## Still to wire up
 
