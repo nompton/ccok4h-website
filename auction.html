@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Auction Checkout — Cleveland County 4-H Foundation</title>
+<meta name="description" content="Pay for your Cleveland County 4-H auction items — secure checkout through Square.">
+<link rel="icon" type="image/png" href="/assets/favicon.png">
+<meta name="theme-color" content="#00843D">
+<meta property="og:title" content="Auction Checkout — Cleveland County 4-H Foundation">
+<meta property="og:description" content="Pay for your winning auction items. Secure checkout via Square.">
+<meta property="og:image" content="https://ccok4h.org/assets/og-image.png">
+<link rel="stylesheet" href="/assets/pages.css">
+</head>
+<body>
+<div class="page">
+  <div class="top">
+    <a class="home" href="/"><img src="/assets/emblom.svg" alt="Cleveland County 4-H"></a>
+    <span class="eyebrow">Cleveland County 4-H Foundation</span>
+    <h1 class="serif">Auction checkout</h1>
+    <p>Won something? Pay for your auction items right here — thank you for supporting 4-H!</p>
+  </div>
+
+  <div class="card">
+    <ol style="margin:0 0 20px; padding-left:20px; color:var(--muted); font-size:.96rem; line-height:1.7;">
+      <li>Tap <b>Pay for my items</b> below.</li>
+      <li>Enter your <b>total</b> from your bid sheet / winning items.</li>
+      <li>Add your name so we can match your payment.</li>
+    </ol>
+
+    <a class="btn primary" href="PASTE_AUCTION_SQUARE_LINK" target="_blank" rel="noopener" data-auction>Pay for my items</a>
+
+    <div class="trust">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Secure checkout via Square
+    </div>
+  </div>
+
+  <p class="foot"><a href="/donate">Want to make a donation too? &rarr;</a></p>
+</div>
+<script>
+  // Until the auction Square link is added, don't show a dead button.
+  (function () {
+    var b = document.querySelector("[data-auction]");
+    if (b && b.getAttribute("href").indexOf("PASTE_AUCTION_SQUARE_LINK") > -1) {
+      b.removeAttribute("href");
+      b.removeAttribute("target");
+      b.textContent = "Payment link coming soon";
+      b.style.opacity = ".6";
+      b.style.cursor = "default";
+    }
+  })();
+</script>
+</body>
+</html>
