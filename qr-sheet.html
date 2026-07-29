@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>QR Codes — Cleveland County 4-H Foundation</title>
+<link rel="icon" type="image/png" href="/assets/favicon.png">
+<style>
+  :root { --green:#00843D; --ink:#16241B; --muted:#56655A; --line:#E2E7DC; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:#fff; color:var(--ink); font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; }
+  .wrap { max-width:820px; margin:0 auto; padding:34px 26px 60px; }
+  .head { text-align:center; margin-bottom:8px; }
+  .head img { width:60px; height:auto; display:block; margin:0 auto 10px; }
+  .head h1 { font-family:Georgia,serif; font-size:1.5rem; margin:0; }
+  .head p { color:var(--muted); margin:6px 0 0; font-size:.95rem; }
+  .printbtn { display:block; margin:16px auto 26px; background:var(--green); color:#fff; border:none; font:inherit; font-weight:650; padding:11px 22px; border-radius:10px; cursor:pointer; }
+  .grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+  .card { border:1.5px solid var(--line); border-radius:16px; padding:22px 18px 20px; text-align:center; break-inside:avoid; }
+  .card .label { font-size:.72rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--green); }
+  .card h2 { font-family:Georgia,serif; font-size:1.3rem; margin:4px 0 2px; }
+  .card .desc { color:var(--muted); font-size:.9rem; margin:0 0 14px; min-height:2.4em; }
+  .card img.qr { width:190px; height:190px; image-rendering:pixelated; }
+  .card .url { margin-top:12px; font-size:.92rem; font-weight:600; color:var(--ink); letter-spacing:.01em; }
+  .note { text-align:center; color:var(--muted); font-size:.82rem; margin-top:26px; }
+  @media print {
+    .printbtn { display:none; }
+    .wrap { padding:12px; }
+    .card { border-color:#ccc; }
+    a[href]:after { content:""; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="head">
+    <img src="/assets/emblom.svg" alt="Cleveland County 4-H">
+    <h1>Cleveland County 4-H Foundation</h1>
+    <p>Scan with any phone camera — no app needed.</p>
+  </div>
+  <button class="printbtn" onclick="window.print()">🖨 Print this sheet</button>
+
+  <div class="grid">
+    <div class="card">
+      <div class="label">Give</div>
+      <h2>Donate</h2>
+      <p class="desc">One-time or monthly gift, secure through Square.</p>
+      <img class="qr" src="/assets/qr/donate.png" alt="QR code to donate">
+      <div class="url">ccok4h.org/donate</div>
+    </div>
+    <div class="card">
+      <div class="label">Reconnect</div>
+      <h2>4-H Alumni</h2>
+      <p class="desc">Were you a 4-H'er? Join the alumni list.</p>
+      <img class="qr" src="/assets/qr/alumni.png" alt="QR code for alumni sign-up">
+      <div class="url">ccok4h.org/alumni</div>
+    </div>
+    <div class="card">
+      <div class="label">Stay in touch</div>
+      <h2>Join Donor List</h2>
+      <p class="desc">Hear about ways to give, sponsorships &amp; events.</p>
+      <img class="qr" src="/assets/qr/join.png" alt="QR code to join the donor list">
+      <div class="url">ccok4h.org/join</div>
+    </div>
+    <div class="card">
+      <div class="label">Visit</div>
+      <h2>Our Website</h2>
+      <p class="desc">Everything in one place.</p>
+      <img class="qr" src="/assets/qr/home.png" alt="QR code for the website">
+      <div class="url">ccok4h.org</div>
+    </div>
+  </div>
+
+  <p class="note">Cleveland County 4-H Foundation · a registered 501(c)(3) nonprofit</p>
+</div>
+</body>
+</html>
