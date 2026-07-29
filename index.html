@@ -582,13 +582,13 @@
     if (!probe.naturalWidth) return;
     document.querySelectorAll("svg.cl").forEach(function (svg) {
       var img = document.createElement("img");
-      img.src = "/assets/logo.png";
+      img.src = "/assets/emblom.svg";
       img.alt = "Cleveland County 4-H clover";
       img.setAttribute("class", svg.getAttribute("class") || "cl");
       svg.replaceWith(img);
     });
   };
-  probe.src = "/assets/logo.png";
+  probe.src = "/assets/emblom.svg";
 })();
 </script>
 </body>
